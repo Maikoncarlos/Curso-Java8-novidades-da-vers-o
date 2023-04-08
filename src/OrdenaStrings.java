@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class OrdenaStrings {
     public static void main(String[] args) {
@@ -29,7 +32,8 @@ public class OrdenaStrings {
         //METODO PARA ORDENAR DA STRING MENOR PARA A MAIOR:
 
         //palavras.sort((p1, p2) -> Integer.compare(p1.length(), p2.length())); //FORMA HABITUAL
-        palavras.sort(Comparator.comparingInt(String::length)); //Forma Oculta
+        //palavras.sort(Comparator.comparingInt(String::length)); //Forma Oculta
+        palavras.sort(Comparator.comparing(p -> p.length()));
         System.out.println(palavras);
         System.out.println("###############");
 
@@ -42,6 +46,14 @@ public class OrdenaStrings {
 //            palavras.forEach(consumidor); //modo antgo!
         palavras.forEach((p) -> System.out.println(p));
         palavras.forEach(System.out::println); //igual ao de cima!
+
+
+        Function<String, Integer> funcao = s -> s.length();
+        Comparator<String> comparador = Comparator.comparing(funcao);
+        palavras.sort(comparador);
+
+
+
 
     }
 }
@@ -80,15 +92,21 @@ class OrdenaStringsLambda {
         System.out.println();
 
 //        palavras.sort((p1, p2) -> Integer.compare(p1.length(), p2.length())); modo trivial !
-        palavras.sort(Comparator.comparingInt(String::length));
+        palavras.sort(Comparator.comparingInt(String::length)); //method reference
 
         System.out.println("DEPOIS DO SORT");
 //        palavras.forEach(p -> System.out.println(p));
         palavras.forEach(System.out::println);
         System.out.println();
 
+
+
+        // Interface Funcional = com apenas uma metodo abstrado(Ex: Consumer, Comparator)
+
         // Consumer espera uma expressão lambda e retorna void =  s -> {};
         // Comparator espera dois argumentos e retorna um Integer (s1, s2) -> {};
+        // Function espera um Lambda s -> {};
+        // Method Reference: String s -> s.length() = String::length;
     }
 }
 
