@@ -106,7 +106,7 @@ class OrdenaStringsLambda {
         // Consumer espera uma expressão lambda e retorna void =  s -> {};
         // Comparator espera dois argumentos e retorna um Integer (s1, s2) -> {};
         // Function espera um Lambda s -> {};
-        // Method Reference: String s -> s.length() = String::length;
+        // Method References: String s -> s.length() = String::length;
     }
 }
 
