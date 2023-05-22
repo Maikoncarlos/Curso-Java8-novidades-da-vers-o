@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class OrdenaStrings {
@@ -12,6 +10,9 @@ public class OrdenaStrings {
         palavras.add("alura online");
         palavras.add("editora casa do código");
         palavras.add("caelum");
+
+        System.out.println();
+
 
 
 //        Comparator<String> compador = new ComparadorPorTamanho();
@@ -35,7 +36,12 @@ public class OrdenaStrings {
         //palavras.sort(Comparator.comparingInt(String::length)); //Forma Oculta
         palavras.sort(Comparator.comparing(p -> p.length()));
         System.out.println(palavras);
-        System.out.println("###############");
+        System.out.println();
+
+        System.out.println("Ordenando por order alfabetica");
+        palavras.sort(String::compareTo);
+        System.out.println(palavras);
+        System.out.println();
 
 
 //        for (String p : palavras){
@@ -100,9 +106,26 @@ class OrdenaStringsLambda {
         System.out.println();
 
 
+        System.out.println("COM STREAM");
+        System.out.println();
+        System.out.println("ordenando pelo tamanho da string");
+        palavras.stream()
+                .sorted(Comparator.comparing(String::length))
+                .forEach(System.out::println);
+
+        System.out.println();
+        System.out.println("ordenando por ordem alfabética");
+        palavras.stream()
+                .sorted(Comparator.comparing(p -> p.compareTo(p)))
+                .forEach(System.out::println);
+
+
+
+
+
 
         // Interface Funcional = com apenas uma metodo abstrado(Ex: Consumer, Comparator)
-
+        // forEach espera um Consumer como parametro;
         // Consumer espera uma expressão lambda e retorna void =  s -> {};
         // Comparator espera dois argumentos e retorna um Integer (s1, s2) -> {};
         // Function espera um Lambda s -> {};
